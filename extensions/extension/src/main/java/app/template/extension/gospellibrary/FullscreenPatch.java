@@ -30,6 +30,12 @@ public class FullscreenPatch {
 
     private static boolean registered;
 
+    public static void onActivityCreate(Activity activity) {
+        register(activity.getApplication());
+        setup(activity);
+        apply(activity);
+    }
+
     public static synchronized void register(Application app) {
         if (registered) return;
         registered = true;
