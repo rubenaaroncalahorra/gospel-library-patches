@@ -28,7 +28,11 @@ public class FullscreenPatch {
             | View.SYSTEM_UI_FLAG_FULLSCREEN
             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
-    public static void register(Application app) {
+    private static boolean registered;
+
+    public static synchronized void register(Application app) {
+        if (registered) return;
+        registered = true;
         app.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity a, Bundle b) {
