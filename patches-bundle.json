@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-02T23:33:22",
-  "description": "## [1.0.2](https://github.com/rubenaaroncalahorra/gospel-library-patches/compare/v1.0.1...v1.0.2) (2026-11-02)\n\n### 🐛 Bug Fixes\n\n* find Application.onCreate via class hierarchy (obfuscation-proof) ([dc6b88d](https://github.com/rubenaaroncalahorra/gospel-library-patches/commit/dc6b88d3f3d855cb7e3ca24156c23e977021ddbf))",
-  "download_url": "https://github.com/rubenaaroncalahorra/gospel-library-patches/releases/download/v1.0.2/patches-1.0.2.mpp",
+  "created_at": "2026-11-02T23:47:33",
+  "description": "## [1.0.3](https://github.com/rubenaaroncalahorra/gospel-library-patches/compare/v1.0.2...v1.0.3) (2026-11-02)\n\n### 🐛 Bug Fixes\n\n* also hook Activity.onCreate when Application has no onCreate ([ab4edd6](https://github.com/rubenaaroncalahorra/gospel-library-patches/commit/ab4edd6ae31595ec7da1024c3c01fc48c8a2bddf))",
+  "download_url": "https://github.com/rubenaaroncalahorra/gospel-library-patches/releases/download/v1.0.3/patches-1.0.3.mpp",
   "signature_download_url": "",
-  "version": "1.0.2"
+  "version": "1.0.3"
 }

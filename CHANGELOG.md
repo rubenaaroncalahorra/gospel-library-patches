@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/rubenaaroncalahorra/gospel-library-patches/compare/v1.0.2...v1.0.3) (2026-11-02)
+
+### 🐛 Bug Fixes
+
+* also hook Activity.onCreate when Application has no onCreate ([ab4edd6](https://github.com/rubenaaroncalahorra/gospel-library-patches/commit/ab4edd6ae31595ec7da1024c3c01fc48c8a2bddf))
+
 ## [1.0.2](https://github.com/rubenaaroncalahorra/gospel-library-patches/compare/v1.0.1...v1.0.2) (2026-11-02)
 
 ### 🐛 Bug Fixes
