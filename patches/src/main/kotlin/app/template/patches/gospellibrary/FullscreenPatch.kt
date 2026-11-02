@@ -19,40 +19,57 @@ val fullscreenPatch = bytecodePatch(
     extendWith("extensions/extension.mpe")
 
     execute {
-        // Class names are obfuscated and the Application class may sit below intermediate
-        // base classes, so find every class that descends from android.app.Application.
         val parentOf = HashMap<String, String>()
         classDefForEach { c -> c.superclass?.let { parentOf[c.type] = it } }
 
-        fun isApplication(type: String): Boolean {
+        fun descendsFrom(type: String, root: String): Boolean {
             var t: String? = type
             var depth = 0
             while (t != null && depth++ < 64) {
-                if (t == "Landroid/app/Application;") return true
+                if (t == root) return true
                 t = parentOf[t]
             }
             return false
         }
 
-        val targets = parentOf.keys.filter { isApplication(it) }
-            .mapNotNull { type ->
-                classDefBy(type).methods.firstOrNull {
-                    it.name == "onCreate" && it.returnType == "V" && it.parameters.isEmpty() &&
+        // Hooks every onCreate with the given parameters in classes descending from root.
+        // The extension ignores repeated calls, so hooking several levels of a chain is safe.
+        fun hook(root: String, parameters: List<String>, call: String): Int {
+            var count = 0
+            for (type in parentOf.keys.filter { descendsFrom(it, root) }) {
+                val hasMethod = classDefBy(type).methods.any {
+                    it.name == "onCreate" && it.returnType == "V" &&
+                        it.parameterTypes.map(CharSequence::toString) == parameters &&
                         it.implementation != null
-                }?.let { type }
-            }
+                }
+                if (!hasMethod) continue
 
-        if (targets.isEmpty()) throw PatchException("No Application.onCreate found")
-
-        // register() is idempotent, so patching every onCreate in the chain is safe.
-        targets.forEach { type ->
-            val method = mutableClassDefBy(type).methods.first {
-                it.name == "onCreate" && it.parameters.isEmpty()
+                mutableClassDefBy(type).methods.first {
+                    it.name == "onCreate" && it.returnType == "V" &&
+                        it.parameterTypes.map(CharSequence::toString) == parameters &&
+                        it.implementation != null
+                }.addInstruction(0, call)
+                count++
             }
-            method.addInstruction(
-                0,
-                "invoke-static { p0 }, $EXTENSION_CLASS->register(Landroid/app/Application;)V"
-            )
+            return count
+        }
+
+        val applicationHooks = hook(
+            "Landroid/app/Application;",
+            emptyList(),
+            "invoke-static { p0 }, $EXTENSION_CLASS->register(Landroid/app/Application;)V"
+        )
+
+        // Activity hook is the fallback when the app's Application class has no onCreate.
+        // Reading mode runs in an Activity, so this also covers it directly.
+        val activityHooks = hook(
+            "Landroid/app/Activity;",
+            listOf("Landroid/os/Bundle;"),
+            "invoke-static { p0 }, $EXTENSION_CLASS->onActivityCreate(Landroid/app/Activity;)V"
+        )
+
+        if (applicationHooks + activityHooks == 0) {
+            throw PatchException("No Application or Activity onCreate found")
         }
     }
 }
