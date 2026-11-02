@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/rubenaaroncalahorra/gospel-library-patches/compare/v1.0.1...v1.0.2) (2026-11-02)
+
+### 🐛 Bug Fixes
+
+* find Application.onCreate via class hierarchy (obfuscation-proof) ([dc6b88d](https://github.com/rubenaaroncalahorra/gospel-library-patches/commit/dc6b88d3f3d855cb7e3ca24156c23e977021ddbf))
+
 ## [1.0.1](https://github.com/rubenaaroncalahorra/gospel-library-patches/compare/v1.0.0...v1.0.1) (2026-11-02)
 
 ### 🐛 Bug Fixes
