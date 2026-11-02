@@ -1,3 +1,9 @@
+## [1.0.4](https://github.com/rubenaaroncalahorra/gospel-library-patches/compare/v1.0.3...v1.0.4) (2026-11-02)
+
+### 🐛 Bug Fixes
+
+* build hook instruction manually instead of inline smali ([c10b756](https://github.com/rubenaaroncalahorra/gospel-library-patches/commit/c10b75625e68d57192e8eb3feb54d84f7b6ac3c4))
+
 ## [1.0.3](https://github.com/rubenaaroncalahorra/gospel-library-patches/compare/v1.0.2...v1.0.3) (2026-11-02)
 
 ### 🐛 Bug Fixes
