@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-02T22:53:54",
-  "description": "## 1.0.0 (2026-11-02)\n\n### ✨ New Features\n\n* add Gospel Library force fullscreen patch ([b26d245](https://github.com/rubenaaroncalahorra/gospel-library-patches/commit/b26d245c9b6ee0a71197c30577b65aadef8dadea))",
-  "download_url": "https://github.com/rubenaaroncalahorra/gospel-library-patches/releases/download/v1.0.0/patches-1.0.0.mpp",
+  "created_at": "2026-11-02T23:08:27",
+  "description": "## [1.0.1](https://github.com/rubenaaroncalahorra/gospel-library-patches/compare/v1.0.0...v1.0.1) (2026-11-02)\n\n### 🐛 Bug Fixes\n\n* loosen Application.onCreate fingerprint, add 7.9.1 ([b518911](https://github.com/rubenaaroncalahorra/gospel-library-patches/commit/b518911771a1ee1bf9c147cfb430a30ba4b23eae))",
+  "download_url": "https://github.com/rubenaaroncalahorra/gospel-library-patches/releases/download/v1.0.1/patches-1.0.1.mpp",
   "signature_download_url": "",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
